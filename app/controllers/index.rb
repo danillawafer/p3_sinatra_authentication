@@ -16,7 +16,7 @@ post '/sessions' do
 end
 
 delete '/sessions/:id' do
-  # sign-out -- invoked via AJAX
+  session[:user_id] = nil
 end
 
 #----------- USERS -----------
@@ -27,5 +27,9 @@ get '/users/new' do
 end
 
 post '/users' do
+  p params
   # sign-up a new user
+  User.create(params[:user])
+  redirect '/sessions/new'
 end
+
