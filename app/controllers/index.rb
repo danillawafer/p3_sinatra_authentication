@@ -1,6 +1,6 @@
 get '/' do
-  # render home page
- #TODO: Show all users if user is signed in
+  @users = User.all
+  p @users
   erb :index
 end
 
@@ -12,7 +12,8 @@ get '/sessions/new' do
 end
 
 post '/sessions' do
-  # sign-in
+  login
+  redirect '/'
 end
 
 delete '/sessions/:id' do
@@ -27,7 +28,6 @@ get '/users/new' do
 end
 
 post '/users' do
-  p params
   # sign-up a new user
   User.create(params[:user])
   redirect '/sessions/new'

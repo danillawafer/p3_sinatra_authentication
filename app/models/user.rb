@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
     if @user.password == params[:password]
       session[:user_id] = @user.id
     else
-      redirect '/'
+      redirect '/sessions/new'
     end
   end
 

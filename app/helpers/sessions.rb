@@ -6,4 +6,15 @@ helpers do
       false
     end
   end
+
+  def login
+    @user = User.find_by_email(params[:email])
+    unless @user.nil?
+      if @user.password == params[:password]
+        session[:user_id] = @user.id
+      else
+        redirect '/'
+      end
+    end
+  end
 end
